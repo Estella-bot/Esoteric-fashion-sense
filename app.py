@@ -133,4 +133,6 @@ def access_report(token):
 
 if __name__ == '__main__':
     # 在生产环境中，请使用更健壮的服务器，如gunicorn
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port))
