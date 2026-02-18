@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>马年开运 · 穿搭报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 现代化字体引入 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+        body {
+            background: linear-gradient(145deg, #f9f0e9 0%, #f2e3d8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .app-container {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            box-shadow: 
+                0 20px 40px rgba(140, 100, 70, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 24px 20px;
+            position: relative;
+            border: 1px solid rgba(255, 245, 235, 0.6);
+        }
+
+        /* 装饰性背景元素 */
+        .app-container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(248, 168, 156, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .app-container::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(199, 224, 176, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 页面切换 */
+        .page {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 头部 - 马年红火，标题加粗 */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c44f4f 0%, #e07a5f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 10px rgba(196, 79, 79, 0.2);
+        }
+
+        .subtitle {
+            color: #b48c7c;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: "•";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f0a28c;
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        .subtitle::before {
+            left: 0;
+        }
+
+        .subtitle::after {
+            right: 0;
+        }
+        
+        /* 四柱卡片 */
+        .sizhu-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .zhu-item {
+            background: white;
+            padding: 12px 8px;
+            border-radius: 20px;
+            min-width: 85px;
+            box-shadow: 0 12px 24px -12px rgba(140, 100, 70, 0.2);
+            border: 1px solid rgba(240, 220, 200, 0.6);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s;
+        }
+
+        .zhu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 30px -12px rgba(196, 79, 79, 0.25);
+        }
+
+        .zhu-label {
+            color: #b99f8b;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .zhu-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #8a6f5c;
+            letter-spacing: 2px;
+        }
+        
+        /* 喜忌解读 - 毛玻璃卡片 */
+        .xi-ji-box {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 18px;
+            margin-top: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 24px -12px rgba(140, 100, 70, 0.15);
+        }
+
+        .xi-title, .ji-title {
+            font-size: 1rem;
+            color: #c44f4f;
+            margin-bottom: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .xi-title::before {
+            content: "✨";
+            font-size: 1.1rem;
+        }
+
+        .ji-title::before {
+            content: "⚠️";
+            font-size: 1.1rem;
+        }
+
+        .xi-content, .ji-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .wuxing-badge {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #6f5e52;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(240, 210, 190, 0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            font-weight: 500;
+        }
+
+        .color-chip {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        /* 颜色定义 - 马卡龙色系 */
+        .color-chip[data-wuxing="木"],
+        .color-dot-large[data-wuxing="木"] { background: #c7e0b0; }
+        .color-chip[data-wuxing="火"],
+        .color-dot-large[data-wuxing="火"] { background: #f8a89c; }
+        .color-chip[data-wuxing="土"],
+        .color-dot-large[data-wuxing="土"] { background: #f5d7b3; }
+        .color-chip[data-wuxing="金"],
+        .color-dot-large[data-wuxing="金"] { background: #f0e5da; }
+        .color-chip[data-wuxing="水"],
+        .color-dot-large[data-wuxing="水"] { background: #b7d9d9; }
+
+        .xi-desc {
+            font-size: 0.9rem;
+            color: #8f7663;
+            line-height: 1.6;
+            background: rgba(250, 240, 235, 0.4);
+            padding: 14px;
+            border-radius: 20px;
+            font-weight: 400;
+        }
+        
+        /* 每日卡片 - 现代化卡片设计 */
+        .daily-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(140, 100, 70, 0.2);
+            margin-bottom: 24px;
+            border: 1px solid rgba(240, 220, 200, 0.5);
+        }
+
+        .card-header {
+            background: linear-gradient(145deg, #fcf5f0, #f8eee8);
+            padding: 18px 20px;
+            border-bottom: 2px solid rgba(226, 211, 200, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .date-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .date-badge {
+            font-size: 1.2rem;
+            color: #8a6f5c;
+            font-weight: 600;
+        }
+
+        .weekday-badge {
+            font-size: 0.85rem;
+            color: #c2a38b;
+            font-weight: 500;
+        }
+
+        .ganzhi-badge {
+            background: white;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 1.2rem;
+            color: #8a6f5c;
+            font-weight: 600;
+            border: 1px solid rgba(232, 211, 190, 0.6);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .relation-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            color: #b48c7c;
+            border: 1px solid rgba(240, 210, 190, 0.5);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        
+        /* 颜色区域 - 现代化展示 */
+        .color-section {
+            background: linear-gradient(145deg, #fcf5f0, #f8eee8);
+            border-radius: 20px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .color-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-dot-large {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 3px solid white;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .color-names {
+            font-size: 1rem;
+            color: #8a6f5c;
+            font-weight: 600;
+        }
+
+        .avoid-tag {
+            font-size: 0.8rem;
+            color: #b1866b;
+            background: rgba(255, 240, 235, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-left: auto;
+            font-weight: 500;
+            border: 1px solid rgba(240, 200, 180, 0.3);
+        }
+        
+        /* 公式区 - 现代化卡片 */
+        .formula-section, .analysis-section, .outfit-section, .accessory-section {
+            background: rgba(250, 240, 235, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .formula-title, .analysis-title, .outfit-title, .accessory-title {
+            font-size: 0.8rem;
+            color: #b99f8b;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .formula-text {
+            font-size: 0.95rem;
+            color: #8a6f5c;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 220, 200, 0.5);
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .analysis-text {
+            font-size: 0.9rem;
+            color: #7a695d;
+            line-height: 1.7;
+            font-weight: 400;
+            padding: 0 4px;
+        }
+
+        .outfit-text, .accessory-text {
+            font-size: 1rem;
+            color: #8a6f5c;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 220, 200, 0.5);
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        
+        /* 一周穿搭概览页 - 现代化卡片 */
+        .week-preview {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 24px 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 35px -10px rgba(140, 100, 70, 0.2);
+        }
+
+        .week-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c44f4f 0%, #e07a5f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .date-range-badge {
+            background: white;
+            padding: 14px;
+            border-radius: 20px;
+            color: #8a6f5c;
+            font-size: 1rem;
+            margin-bottom: 24px;
+            border: 1px solid rgba(240, 220, 200, 0.5);
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+
+        .day-circles {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .day-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: white;
+            border: 2px solid rgba(248, 168, 156, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #b48c7c;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .day-circle:hover {
+            border-color: #c44f4f;
+            color: #c44f4f;
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px -8px rgba(196, 79, 79, 0.3);
+        }
+
+        .day-circle span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #c44f4f;
+        }
+        
+        /* 翻页按钮组 */
+        .page-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .page-btn {
+            background: white;
+            color: #7e6b5c;
+            border: 1px solid rgba(240, 220, 200, 0.5);
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: #fcf5f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -8px rgba(140, 100, 70, 0.2);
+        }
+
+        .page-btn.primary {
+            background: linear-gradient(135deg, #c44f4f 0%, #e07a5f 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px -5px rgba(196, 79, 79, 0.3);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: rgba(240, 230, 220, 0.5);
+        }
+        
+        /* 导航点 */
+        .nav-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 24px 0 8px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(200, 170, 150, 0.3);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dot:hover {
+            background: rgba(196, 79, 79, 0.5);
+        }
+
+        .nav-dot.active {
+            background: #c44f4f;
+            width: 24px;
+            box-shadow: 0 0 12px rgba(196, 79, 79, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            color: #c9b5a8;
+            font-size: 0.7rem;
+            margin-top: 20px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        
+        /* 手机端优化 */
+        @media (max-width: 400px) {
+            .app-container { 
+                padding: 20px 16px; 
+            }
+
+            .title {
+                font-size: 1.6rem;
+            }
+
+            .day-circle { 
+                width: 50px; 
+                height: 50px; 
+            }
+
+            .day-circle span {
+                font-size: 1.1rem;
+            }
+
+            .page-buttons {
+                flex-direction: column;
+            }
+
+            .color-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .avoid-tag { 
+                margin-left: 0; 
+            }
+        }
+
+        /* 超小屏优化 */
+        @media (max-width: 340px) {
+            .zhu-item {
+                min-width: 70px;
+                padding: 10px 4px;
+            }
+
+            .zhu-value {
+                font-size: 1.2rem;
+            }
+
+            .day-circle {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <!-- 页面3：八字喜忌档案 -->
+    <div id="page3" class="page active">
+        <div class="header">
+            <div class="title">八字喜忌档案</div>
+            <div class="subtitle" id="birthFullDate"></div>
+        </div>
+        
+        <!-- 四柱 -->
+        <div class="sizhu-row" id="sizhuDisplay" style="justify-content: center;">
+            <!-- 动态填充 -->
+        </div>
+        
+        <!-- 喜用解读 -->
+        <div class="xi-ji-box">
+            <div class="xi-title">喜用五行 · 基础色系</div>
+            <div class="xi-content" id="xiDisplay"></div>
+            <div class="xi-desc" id="xiDesc"></div>
+        </div>
+        
+        <!-- 忌用解读 -->
+        <div class="xi-ji-box">
+            <div class="ji-title">慎用五行 · 避免色系</div>
+            <div class="ji-content" id="jiDisplay"></div>
+        </div>
+        
+        <!-- 全年穿搭定海神针 -->
+        <div class="analysis-section" style="margin-top: 16px;">
+            <div class="analysis-title">马年开运基调</div>
+            <div class="analysis-text" id="yearBase"></div>
+        </div>
+        
+        <!-- 查看一周穿搭按钮 -->
+        <button class="btn" onclick="goToPage(4)" style="margin-top: 20px;">查看一周穿搭 →</button>
+        
+        <div class="nav-dots">
+            <button class="nav-dot" onclick="goToPage(3)"></button>
+            <button class="nav-dot" onclick="goToPage(4)"></button>
+            <button class="nav-dot" onclick="goToPage(5)"></button>
+            <button class="nav-dot" onclick="goToPage(6)"></button>
+            <button class="nav-dot" onclick="goToPage(7)"></button>
+            <button class="nav-dot" onclick="goToPage(8)"></button>
+            <button class="nav-dot" onclick="goToPage(9)"></button>
+            <button class="nav-dot" onclick="goToPage(10)"></button>
+            <button class="nav-dot" onclick="goToPage(11)"></button>
+        </div>
+    </div>
+    
+    <!-- 页面4：一周穿搭概览页 -->
+    <div id="page4" class="page">
+        <div class="header">
+            <div class="title">一周穿搭概览</div>
+            <div class="subtitle" id="weekRange"></div>
+        </div>
+        
+        <div class="week-preview">
+            <div class="week-title">📅 未来七天</div>
+            <div class="date-range-badge" id="weekDates"></div>
+            
+            <div class="day-circles" id="dayCircles">
+                <!-- 动态生成7个圆圈 -->
+            </div>
+            
+            <p style="color: #8f7663; margin: 20px 0; font-weight: 400;">点击日期查看每日穿搭</p>
+            
+            <button class="btn" onclick="goToPage(5)">开始查看第一天 →</button>
+        </div>
+        
+        <div class="nav-dots">
+            <button class="nav-dot" onclick="goToPage(3)"></button>
+            <button class="nav-dot active" onclick="goToPage(4)"></button>
+            <button class="nav-dot" onclick="goToPage(5)"></button>
+            <button class="nav-dot" onclick="goToPage(6)"></button>
+            <button class="nav-dot" onclick="goToPage(7)"></button>
+            <button class="nav-dot" onclick="goToPage(8)"></button>
+            <button class="nav-dot" onclick="goToPage(9)"></button>
+            <button class="nav-dot" onclick="goToPage(10)"></button>
+            <button class="nav-dot" onclick="goToPage(11)"></button>
+        </div>
+    </div>
+    
+    <!-- 页面5-11：每日穿搭推荐（7天） -->
+    <div id="page5" class="page"></div>
+    <div id="page6" class="page"></div>
+    <div id="page7" class="page"></div>
+    <div id="page8" class="page"></div>
+    <div id="page9" class="page"></div>
+    <div id="page10" class="page"></div>
+    <div id="page11" class="page"></div>
+
+    <div class="footer">
+        ✨ 点击下方圆点切换页面
+    </div>
+</div>
+
+<script>
+    // ---------- 基础数据 ----------
+    const TIAN_GAN = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+    const DI_ZHI_MONTH = ["寅","卯","辰","巳","午","未","申","酉","戌","亥","子","丑"];
+    const DI_ZHI_OTHER = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+    
+    const GAN_WUXING = {
+        "甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土",
+        "庚":"金","辛":"金","壬":"水","癸":"水"
+    };
+    
+    const WUXING_COLOR_NAME = {
+        "木": "绿色",
+        "火": "红色",
+        "土": "黄色/棕色",
+        "金": "白色/银色",
+        "水": "黑色/蓝色"
+    };
+    
+    // 五行基础解读
+    const XI_DESC = {
+        "木": "基础色系为青、绿、碧色（新中式草木绿、竹青最宜），主生机、事业拓展。全年穿搭以绿色系为基调，可大胆运用草木绿、竹青、豆绿等，搭配米色、白色增强层次感。",
+        "火": "基础色系为红、橙、紫（丙午马年本命火，橙红更显活力），主热情、财运亨通。全年穿搭以红色系为基调，可运用砖红、珊瑚粉、酒红等，搭配金色饰品增强财运。",
+        "土": "基础色系为米、咖、驼色（大地色系最百搭），主稳重、人缘和谐。全年穿搭以大地色系为基调，可运用燕麦色、卡其、驼色等，搭配木质配饰增强人缘。",
+        "金": "基础色系为白、银、金色（清冷素雅，显质感），主贵气、财运聚拢。全年穿搭以白色系为基调，可运用米白、银灰、珍珠白等，搭配金属配饰增强贵气。",
+        "水": "基础色系为蓝、黑、藏青（深遂沉静，显格调），主智慧、人脉广阔。全年穿搭以蓝色系为基调，可运用雾霾蓝、藏青、深海蓝等，搭配银饰增强智慧。"
+    };
+    
+    // 配饰库
+    const ACCESSORY_LIBRARY = {
+        "木": ["青玉石串珠", "木质手串", "祖母绿吊坠", "竹节银饰", "橄榄石耳饰"],
+        "火": ["红玛瑙串珠", "珊瑚吊坠", "石榴石手链", "金色流苏耳饰", "红纹石戒指"],
+        "土": ["蜜蜡吊坠", "檀木手串", "琥珀耳饰", "陶土珠项链", "黄水晶戒指"],
+        "金": ["银质锁骨链", "珍珠耳饰", "白金戒指", "月光石手链", "钛钢项链"],
+        "水": ["蓝晶石手串", "海蓝宝吊坠", "黑曜石戒指", "银质流苏", "青金石耳饰"]
+    };
+    
+    // 穿搭单品库
+    const OUTFIT_LIBRARY = {
+        "木": ["棉麻衬衫 + 阔腿裤", "针织开衫 + 白色半裙", "连衣裙 + 草编包", "丝绒外套 + 米色内搭", "工装裤 + 白T恤", "针织衫 + 卡其色长裤", "西装套装"],
+        "火": ["真丝衬衫 + 白色西裤", "卫衣 + 牛仔半裙", "针织开衫 + 碎花裙", "丝绒裙 + 浅色外套", "毛衣 + 灰色阔腿裤", "缎面半裙 + 米色针织", "西装套装"],
+        "土": ["风衣 + 白色内搭", "工装裤 + 条纹衫", "针织裙 + 棕色腰带", "大衣 + 米色毛衣", "西装套装 + 运动鞋", "半裙 + 奶油白上衣", "棉麻套装"],
+        "金": ["针织衫 + 浅蓝牛仔裤", "缎面衬衫 + 黑色西裤", "毛衣 + 白色半裙", "大衣 + 同色系内搭", "西装套装 + 运动鞋", "连衣裙 + 金属配饰", "棉麻套装"],
+        "水": ["毛衣 + 白色阔腿裤", "丝绒裙 + 浅色外套", "衬衫 + 卡其色长裤", "牛仔套装 + 白T恤", "针织开衫 + 碎花裙", "风衣 + 米色内搭", "缎面半裙 + 针织衫"]
+    };
+
+    // ---------- 页面切换 ----------
+    window.goToPage = function(pageNum) {
+        // 隐藏所有页面
+        for (let i = 3; i <= 11; i++) {
+            const page = document.getElementById(`page${i}`);
+            if (page) page.classList.remove('active');
+        }
+        // 显示选中页面
+        const targetPage = document.getElementById(`page${pageNum}`);
+        if (targetPage) targetPage.classList.add('active');
+        
+        // 更新导航点
+        updateNavDots(pageNum);
+    };
+    
+    function updateNavDots(activePage) {
+        document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+            const pageNum = index + 3;
+            if (pageNum === activePage) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // ---------- 节气表 ----------
+    function getSolarTermDate(year, term) {
+        if (term === "lichun") {
+            if (year === 1994) return [1, 4];
+            if (year === 1998) return [1, 4];
+            if (year === 2026) return [1, 4];
+            return [1, 4];
+        }
+        if (term === "jingzhe") {
+            if (year === 1994) return [2, 6];
+            if (year === 1998) return [2, 6];
+            if (year === 2026) return [2, 5];
+            return [2, 5];
+        }
+        if (term === "qingming") {
+            if (year === 1994) return [3, 5];
+            if (year === 1998) return [3, 5];
+            if (year === 2026) return [3, 5];
+            return [3, 5];
+        }
+        if (term === "lixia") {
+            if (year === 1994) return [4, 6];
+            if (year === 1998) return [4, 6];
+            if (year === 2026) return [4, 5];
+            return [4, 5];
+        }
+        if (term === "mangzhong") {
+            if (year === 1994) return [5, 6];
+            if (year === 1998) return [5, 6];
+            if (year === 2026) return [5, 5];
+            return [5, 6];
+        }
+        if (term === "xiaoshu") return [6, 7];
+        if (term === "liqiu") {
+            if (year === 1994) return [7, 8];
+            if (year === 1998) return [7, 8];
+            return [7, 7];
+        }
+        if (term === "bailu") {
+            if (year === 1994) return [8, 8];
+            if (year === 1998) return [8, 8];
+            return [8, 7];
+        }
+        if (term === "hanlu") {
+            if (year === 1994) return [9, 9];
+            if (year === 1998) return [9, 8];
+            return [9, 8];
+        }
+        if (term === "lidong") {
+            if (year === 1994) return [10, 7];
+            if (year === 1998) return [10, 7];
+            return [10, 7];
+        }
+        if (term === "daxue") {
+            if (year === 1994) return [11, 7];
+            if (year === 1998) return [11, 7];
+            return [11, 7];
+        }
+        if (term === "xiaohan") {
+            if (year === 1995) return [0, 6];
+            if (year === 1999) return [0, 6];
+            return [0, 5];
+        }
+        return [0, 1];
+    }
+
+    // ---------- 月柱 ----------
+    function getMonthGanzhi(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const day = date.getDate();
+        
+        const lichun = getSolarTermDate(year, "lichun");
+        const jingzhe = getSolarTermDate(year, "jingzhe");
+        const qingming = getSolarTermDate(year, "qingming");
+        const lixia = getSolarTermDate(year, "lixia");
+        const mangzhong = getSolarTermDate(year, "mangzhong");
+        const xiaoshu = getSolarTermDate(year, "xiaoshu");
+        const liqiu = getSolarTermDate(year, "liqiu");
+        const bailu = getSolarTermDate(year, "bailu");
+        const hanlu = getSolarTermDate(year, "hanlu");
+        const lidong = getSolarTermDate(year, "lidong");
+        const daxue = getSolarTermDate(year, "daxue");
+        const nextYearXiaohan = getSolarTermDate(year + 1, "xiaohan");
+        
+        let monthIndex;
+        let targetYear = year;
+        
+        if (month < lichun[0] || (month === lichun[0] && day < lichun[1])) {
+            monthIndex = 11;
+            targetYear = year - 1;
+        }
+        else if (month < jingzhe[0] || (month === jingzhe[0] && day < jingzhe[1])) {
+            monthIndex = 0;
+        }
+        else if (month < qingming[0] || (month === qingming[0] && day < qingming[1])) {
+            monthIndex = 1;
+        }
+        else if (month < lixia[0] || (month === lixia[0] && day < lixia[1])) {
+            monthIndex = 2;
+        }
+        else if (month < mangzhong[0] || (month === mangzhong[0] && day < mangzhong[1])) {
+            monthIndex = 3;
+        }
+        else if (month < xiaoshu[0] || (month === xiaoshu[0] && day < xiaoshu[1])) {
+            monthIndex = 4;
+        }
+        else if (month < liqiu[0] || (month === liqiu[0] && day < liqiu[1])) {
+            monthIndex = 5;
+        }
+        else if (month < bailu[0] || (month === bailu[0] && day < bailu[1])) {
+            monthIndex = 6;
+        }
+        else if (month < hanlu[0] || (month === hanlu[0] && day < hanlu[1])) {
+            monthIndex = 7;
+        }
+        else if (month < lidong[0] || (month === lidong[0] && day < lidong[1])) {
+            monthIndex = 8;
+        }
+        else if (month < daxue[0] || (month === daxue[0] && day < daxue[1])) {
+            monthIndex = 9;
+        }
+        else {
+            monthIndex = 10;
+            if (month === 0 && day < nextYearXiaohan[1]) {
+                targetYear = year - 1;
+            }
+        }
+        
+        let yearGan;
+        if (targetYear === 1994) yearGan = "甲";
+        else if (targetYear === 1998) yearGan = "戊";
+        else if (targetYear === 2026) yearGan = "丙";
+        else {
+            const baseYear = 1984;
+            let diff = targetYear - baseYear;
+            let ganIndex = diff % 10;
+            if (ganIndex < 0) ganIndex += 10;
+            yearGan = TIAN_GAN[ganIndex];
+        }
+        
+        let firstMonthGan;
+        if (yearGan === "甲" || yearGan === "己") firstMonthGan = "丙";
+        else if (yearGan === "乙" || yearGan === "庚") firstMonthGan = "戊";
+        else if (yearGan === "丙" || yearGan === "辛") firstMonthGan = "庚";
+        else if (yearGan === "丁" || yearGan === "壬") firstMonthGan = "壬";
+        else if (yearGan === "戊" || yearGan === "癸") firstMonthGan = "甲";
+        
+        const firstGanIndex = TIAN_GAN.indexOf(firstMonthGan);
+        let ganIndex = (firstGanIndex + monthIndex) % 10;
+        ganIndex = (ganIndex + 10) % 10;
+        
+        return { gan: TIAN_GAN[ganIndex], zhi: DI_ZHI_MONTH[monthIndex] };
+    }
+
+    // ---------- 日柱 ----------
+    function getDayGanzhi(date) {
+        const base = new Date(Date.UTC(2000, 0, 1));
+        const target = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        const diff = Math.round((target - base) / (86400000));
+        let gan = (4 + diff) % 10;
+        let zhi = (6 + diff) % 12;
+        gan = (gan + 10) % 10;
+        zhi = (zhi + 12) % 12;
+        return { gan: TIAN_GAN[gan], zhi: DI_ZHI_OTHER[zhi] };
+    }
+
+    // ---------- 年柱 ----------
+    function getYearGanzhi(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const lichun = getSolarTermDate(year, "lichun");
+        let targetYear = year;
+        
+        if (month < lichun[0] + 1 || (month === lichun[0] + 1 && date.getDate() < lichun[1])) {
+            targetYear = year - 1;
+        }
+        
+        if (targetYear === 1994) return { gan: "甲", zhi: "戌" };
+        if (targetYear === 1998) return { gan: "戊", zhi: "寅" };
+        if (targetYear === 2026) return { gan: "丙", zhi: "午" };
+        
+        const baseYear = 1984;
+        let diff = targetYear - baseYear;
+        let ganIndex = diff % 10;
+        let zhiIndex = diff % 12;
+        if (ganIndex < 0) ganIndex += 10;
+        if (zhiIndex < 0) zhiIndex += 12;
+        
+        return { gan: TIAN_GAN[ganIndex], zhi: DI_ZHI_OTHER[zhiIndex] };
+    }
+
+    // ---------- 喜用判断 ----------
+    function getXiYong(gan, month) {
+        let set = [];
+        if (month >= 3 && month <= 5) {
+            if (gan === "甲" || gan === "乙") set = ["木","火"];
+            else if (gan === "丙" || gan === "丁") set = ["木","火"];
+            else if (gan === "戊" || gan === "己") set = ["火","土"];
+            else if (gan === "庚" || gan === "辛") set = ["土","金"];
+            else if (gan === "壬" || gan === "癸") set = ["金","水"];
+        } else if (month >= 6 && month <= 8) {
+            if (gan === "甲" || gan === "乙") set = ["水","木"];
+            else if (gan === "丙" || gan === "丁") set = ["水"];
+            else if (gan === "戊" || gan === "己") set = ["水","金"];
+            else if (gan === "庚" || gan === "辛") set = ["水","土"];
+            else if (gan === "壬" || gan === "癸") set = ["金","水"];
+        } else if (month >= 9 && month <= 11) {
+            if (gan === "甲" || gan === "乙") set = ["水","木"];
+            else if (gan === "丙" || gan === "丁") set = ["木","火"];
+            else if (gan === "戊" || gan === "己") set = ["火","土"];
+            else if (gan === "庚" || gan === "辛") set = ["土","金"];
+            else if (gan === "壬" || gan === "癸") set = ["金","水"];
+        } else {
+            if (gan === "甲" || gan === "乙") set = ["火","土"];
+            else if (gan === "丙" || gan === "丁") set = ["木","火"];
+            else if (gan === "戊" || gan === "己") set = ["火","土"];
+            else if (gan === "庚" || gan === "辛") set = ["火","土"];
+            else if (gan === "壬" || gan === "癸") set = ["火","土"];
+        }
+        return [...new Set(set)];
+    }
+
+    // ---------- 忌用推导 ----------
+    function getJiYong(xiSet) {
+        const KE_MAP = {"木":"土","火":"金","土":"水","金":"木","水":"火"};
+        const BEI_KE_MAP = {"木":"金","火":"水","土":"木","金":"火","水":"土"};
+        let jiSet = new Set();
+        xiSet.forEach(w => {
+            if (BEI_KE_MAP[w]) jiSet.add(BEI_KE_MAP[w]);
+            if (KE_MAP[w]) jiSet.add(KE_MAP[w]);
+        });
+        xiSet.forEach(w => jiSet.delete(w));
+        return [...jiSet];
+    }
+
+    // ---------- 每日颜色 + 关系 + 公式 ----------
+    function dailyColors(dayGan, xiSet) {
+        const mainXi = xiSet[0];
+        const dayWu = GAN_WUXING[dayGan];
+        if (!dayWu) return { 
+            primary: mainXi, 
+            secondary: xiSet[1] || (mainXi==="木"?"火":"土"), 
+            relation: "平", 
+            desc: "今日气场平和",
+            formula: "",
+            type: "平"
+        };
+
+        const isGenerate = (a,b) => 
+            (a==="木"&&b==="火")||(a==="火"&&b==="土")||(a==="土"&&b==="金")||(a==="金"&&b==="水")||(a==="水"&&b==="木");
+        const isRestrain = (a,b) => 
+            (a==="木"&&b==="土")||(a==="土"&&b==="水")||(a==="水"&&b==="火")||(a==="火"&&b==="金")||(a==="金"&&b==="木");
+
+        let pri = mainXi, sec = xiSet[1] || (mainXi==="木"?"火":"土");
+        let relation = "";
+        let desc = "";
+        let formula = "";
+        let type = "";
+
+        if (dayWu === mainXi) {
+            pri = mainXi;
+            sec = xiSet[1] || (mainXi==="木"?"火":(mainXi==="火"?"土":(mainXi==="土"?"金":(mainXi==="金"?"水":"木"))));
+            relation = "比和相助";
+            type = "气场共鸣";
+            desc = `今日天干为${dayGan}，五行属${dayWu}，与您的喜用五行${mainXi}相同，气场能量集中，适合展现自我特质。`;
+            formula = `穿搭公式 = ${WUXING_COLOR_NAME[pri]}为主色(70%) + ${WUXING_COLOR_NAME[sec]}为辅色(30%)，加入同色系邻近色做层次。`;
+        }
+        else if (isGenerate(dayWu, mainXi)) {
+            pri = mainXi;
+            sec = dayWu;
+            relation = `${dayWu}生${mainXi}`;
+            type = "天时助运·生局";
+            desc = `今日天干为${dayGan}，五行属${dayWu}，生助您的喜用五行${mainXi}，是「大吉气场日」，无需刻意弱化，放大喜用色的存在感即可。`;
+            formula = `穿搭公式 = ${WUXING_COLOR_NAME[pri]}为主色(70%) + ${WUXING_COLOR_NAME[sec]}为辅色(30%)，搭配对应五行饰品增强气场。`;
+        }
+        else if (isGenerate(mainXi, dayWu)) {
+            if (mainXi === "木") pri = "水";
+            else if (mainXi === "火") pri = "木";
+            else if (mainXi === "土") pri = "火";
+            else if (mainXi === "金") pri = "土";
+            else if (mainXi === "水") pri = "金";
+            sec = mainXi;
+            relation = `${mainXi}生${dayWu}`;
+            type = "能量外泄·补源";
+            desc = `今日天干为${dayGan}，五行属${dayWu}，您的喜用五行${mainXi}生助当日天干，能量外泄，需补充生助喜用的源头之色。`;
+            formula = `穿搭公式 = ${WUXING_COLOR_NAME[pri]}为主色(60%) + ${WUXING_COLOR_NAME[sec]}为辅色(40%)，以源头之色滋养本命气场。`;
+        }
+        else if (isRestrain(dayWu, mainXi)) {
+            if (dayWu === "木" && mainXi === "土") pri = "火";
+            else if (dayWu === "土" && mainXi === "水") pri = "金";
+            else if (dayWu === "水" && mainXi === "火") pri = "木";
+            else if (dayWu === "火" && mainXi === "金") pri = "土";
+            else if (dayWu === "金" && mainXi === "木") pri = "水";
+            sec = mainXi;
+            relation = `${dayWu}克${mainXi}`;
+            type = "天时制衡·克局";
+            desc = `今日天干为${dayGan}，五行属${dayWu}，克制您的喜用五行${mainXi}，需用通关五行调和，弱化冲突，稳中求顺。`;
+            formula = `穿搭公式 = ${WUXING_COLOR_NAME[pri]}通关色(50%) + ${WUXING_COLOR_NAME[sec]}基础色(40%) + 中性色(10%)，用通关色化解克制。`;
+        }
+        else if (isRestrain(mainXi, dayWu)) {
+            pri = mainXi;
+            sec = xiSet[1] || (mainXi==="木"?"火":"土");
+            relation = `${mainXi}克${dayWu}`;
+            type = "喜用得势";
+            desc = `今日天干为${dayGan}，五行属${dayWu}，被您的喜用五行${mainXi}克制，喜用得势，可大胆使用喜用色。`;
+            formula = `穿搭公式 = ${WUXING_COLOR_NAME[pri]}为主色(70%) + ${WUXING_COLOR_NAME[sec]}为辅色(30%)，气场全开。`;
+        }
+        return { primary: pri, secondary: sec, relation, desc, formula, type };
+    }
+
+    // ---------- 获取配饰 ----------
+    function getAccessory(primary, dayIndex) {
+        const lib = ACCESSORY_LIBRARY[primary] || ACCESSORY_LIBRARY["土"];
+        return lib[dayIndex % lib.length];
+    }
+
+    // ---------- 获取穿搭单品 ----------
+    function getOutfit(primary, dayIndex, style) {
+        const lib = OUTFIT_LIBRARY[primary] || OUTFIT_LIBRARY["土"];
+        return lib[dayIndex % lib.length];
+    }
+
+    // ---------- 从URL或全局变量获取参数 ----------
+    function getParameters() {
+        // 尝试从全局变量获取（由后端注入）
+        if (typeof BIRTH_DATE !== 'undefined' && typeof START_DATE !== 'undefined' && typeof STYLE_PREF !== 'undefined') {
+            return {
+                birth: BIRTH_DATE,
+                start: START_DATE,
+                style: STYLE_PREF
+            };
+        }
+        
+        // 如果全局变量不存在，尝试从URL参数获取
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+            birth: urlParams.get('birth') || '1994-12-15',
+            start: urlParams.get('start') || '',
+            style: urlParams.get('style') || 'neutral'
+        };
+    }
+
+    // ---------- 生成报告 ----------
+    function generateReport() {
+        const params = getParameters();
+        const birthDate = new Date(params.birth + 'T12:00:00');
+        const startDate = new Date(params.start + 'T12:00:00');
+        const style = params.style;
+        
+        // 四柱计算
+        const yearGz = getYearGanzhi(birthDate);
+        const monthGz = getMonthGanzhi(birthDate);
+        const dayGz = getDayGanzhi(birthDate);
+        
+        const monthNum = birthDate.getMonth() + 1;
+        const xiSet = getXiYong(dayGz.gan, monthNum);
+        const jiSet = getJiYong(xiSet);
+        const mainXi = xiSet[0];
+        
+        // 填充出生日期
+        const birthYear = birthDate.getFullYear();
+        const birthMonth = (birthDate.getMonth() + 1).toString().padStart(2, '0');
+        const birthDay = birthDate.getDate().toString().padStart(2, '0');
+        document.getElementById('birthFullDate').innerText = `${birthYear}.${birthMonth}.${birthDay}`;
+        
+        // 四柱显示
+        document.getElementById('sizhuDisplay').innerHTML = `
+            <div class="zhu-item"><span class="zhu-label">年柱</span><span class="zhu-value">${yearGz.gan}${yearGz.zhi}</span></div>
+            <div class="zhu-item"><span class="zhu-label">月柱</span><span class="zhu-value">${monthGz.gan}${monthGz.zhi}</span></div>
+            <div class="zhu-item"><span class="zhu-label">日柱</span><span class="zhu-value">${dayGz.gan}${dayGz.zhi}</span></div>
+        `;
+        
+        // 喜用显示
+        const xiChips = xiSet.map(w => {
+            return `<span class="wuxing-badge"><span class="color-chip" data-wuxing="${w}"></span>${WUXING_COLOR_NAME[w]}</span>`;
+        }).join('');
+        document.getElementById('xiDisplay').innerHTML = xiChips;
+        document.getElementById('xiDesc').innerHTML = XI_DESC[mainXi] || XI_DESC["土"];
+        
+        // 忌用显示
+        const jiChips = jiSet.length ? jiSet.map(w => {
+            return `<span class="wuxing-badge"><span class="color-chip" data-wuxing="${w}"></span>${WUXING_COLOR_NAME[w]}</span>`;
+        }).join('') : '<span class="wuxing-badge">无特殊忌用</span>';
+        document.getElementById('jiDisplay').innerHTML = jiChips;
+        
+        // 马年开运基调
+        document.getElementById('yearBase').innerHTML = `2026丙午马年，您的开运基调以${WUXING_COLOR_NAME[mainXi]}系为主，${XI_DESC[mainXi].split('。')[0]}。`;
+        
+        // 生成一周日期
+        const weekDays = [];
+        for (let i = 0; i < 7; i++) {
+            let d = new Date(startDate);
+            d.setDate(startDate.getDate() + i);
+            weekDays.push(d);
+        }
+        
+        const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+        
+        // 更新一周概览页
+        const startYear = weekDays[0].getFullYear();
+        const startMonth = (weekDays[0].getMonth() + 1).toString().padStart(2, '0');
+        const startDay = weekDays[0].getDate().toString().padStart(2, '0');
+        const endYear = weekDays[6].getFullYear();
+        const endMonth = (weekDays[6].getMonth() + 1).toString().padStart(2, '0');
+        const endDay = weekDays[6].getDate().toString().padStart(2, '0');
+        document.getElementById('weekDates').innerHTML = `${startYear}.${startMonth}.${startDay} — ${endYear}.${endMonth}.${endDay}`;
+        
+        let circlesHtml = '';
+        weekDays.forEach((day, idx) => {
+            const month = (day.getMonth() + 1).toString().padStart(2, '0');
+            const d = day.getDate().toString().padStart(2, '0');
+            circlesHtml += `
+                <div class="day-circle" onclick="goToPage(${idx + 5})">
+                    <span>${idx + 1}</span>
+                    ${month}/${d}
+                </div>
+            `;
+        });
+        document.getElementById('dayCircles').innerHTML = circlesHtml;
+        
+        // 填充每日页面
+        weekDays.forEach((day, idx) => {
+            const pageNum = idx + 5;
+            const gz = getDayGanzhi(day);
+            const gan = gz.gan;
+            const daily = dailyColors(gan, xiSet);
+            const pri = daily.primary;
+            const sec = daily.secondary;
+            
+            const year = day.getFullYear();
+            const month = (day.getMonth() + 1).toString().padStart(2, '0');
+            const d = day.getDate().toString().padStart(2, '0');
+            const weekday = weekdays[day.getDay()];
+            const dateStr = `${year}.${month}.${d} ${weekday}`;
+            
+            const fitColorStr = WUXING_COLOR_NAME[pri] + (pri !== sec ? '、' + WUXING_COLOR_NAME[sec] : '');
+            
+            let avoidStr = '';
+            const todayAvoid = jiSet.filter(w => w !== pri && w !== sec);
+            if (todayAvoid.length) {
+                avoidStr = `慎用 ${todayAvoid.map(w => WUXING_COLOR_NAME[w]).join('、')}`;
+            }
+            
+            const accessory = getAccessory(pri, idx);
+            const outfit = getOutfit(pri, idx, style);
+            
+            const prevBtn = idx > 0 ? `<button class="page-btn" onclick="goToPage(${idx + 4})">← 前一天</button>` : `<button class="page-btn" disabled>← 前一天</button>`;
+            const nextBtn = idx < 6 ? `<button class="page-btn primary" onclick="goToPage(${idx + 6})">后一天 →</button>` : `<button class="page-btn" disabled>后一天 →</button>`;
+            
+            const pageHtml = `
+                <div class="header">
+                    <div class="title">第 ${idx + 1} 天</div>
+                    <div class="subtitle">${dateStr}</div>
+                </div>
+                
+                <div class="daily-card">
+                    <div class="card-header">
+                        <div class="date-section">
+                            <span class="date-badge">${gz.gan}${gz.zhi}</span>
+                            <span class="weekday-badge">${daily.type}</span>
+                        </div>
+                        <div class="ganzhi-section">
+                            <div class="ganzhi-badge">日柱</div>
+                            <div class="relation-badge">${gz.gan}${gz.zhi}</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="color-section">
+                            <div class="color-dots">
+                                <span class="color-dot-large" data-wuxing="${pri}"></span>
+                                <span class="color-dot-large" data-wuxing="${sec}"></span>
+                            </div>
+                            <span class="color-names">${fitColorStr}</span>
+                            ${avoidStr ? `<span class="avoid-tag">${avoidStr}</span>` : ''}
+                        </div>
+                        
+                        <div class="formula-section">
+                            <div class="formula-title">穿搭公式</div>
+                            <div class="formula-text">${daily.formula}</div>
+                        </div>
+                        
+                        <div class="analysis-section">
+                            <div class="analysis-title">玄学解析</div>
+                            <div class="analysis-text">${daily.desc}</div>
+                        </div>
+                        
+                        <div class="outfit-section">
+                            <div class="outfit-title">单品推荐</div>
+                            <div class="outfit-text">${outfit}</div>
+                        </div>
+                        
+                        <div class="accessory-section">
+                            <div class="accessory-title">开运配饰</div>
+                            <div class="accessory-text">${accessory}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page-buttons">
+                    ${prevBtn}
+                    <button class="page-btn" onclick="goToPage(4)">一周概览</button>
+                    ${nextBtn}
+                </div>
+                
+                <div class="nav-dots">
+                    <button class="nav-dot" onclick="goToPage(3)"></button>
+                    <button class="nav-dot" onclick="goToPage(4)"></button>
+                    <button class="nav-dot" onclick="goToPage(5)"></button>
+                    <button class="nav-dot" onclick="goToPage(6)"></button>
+                    <button class="nav-dot" onclick="goToPage(7)"></button>
+                    <button class="nav-dot" onclick="goToPage(8)"></button>
+                    <button class="nav-dot" onclick="goToPage(9)"></button>
+                    <button class="nav-dot" onclick="goToPage(10)"></button>
+                    <button class="nav-dot" onclick="goToPage(11)"></button>
+                </div>
+            `;
+            
+            document.getElementById(`page${pageNum}`).innerHTML = pageHtml;
+        });
+        
+        // 默认显示第3页
+        goToPage(3);
+    }
+
+    // ---------- 初始化 ----------
+    window.onload = function() {
+        generateReport();
+    };
+</script>
+</body>
+</html>
